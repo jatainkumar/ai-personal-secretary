@@ -1,0 +1,27 @@
+﻿{
+  "status": "success",
+  "result": [
+    {
+      "projectId": "ai-personal-secreatary",
+      "projectNumber": "515147037076",
+      "displayName": "AI Personal Secretary",
+      "name": "projects/ai-personal-secreatary",
+      "resources": {
+        "hostingSite": "ai-personal-secreatary"
+      },
+      "state": "ACTIVE",
+      "etag": "1_fca8e6f2-6adf-46ce-a0a4-ee5076882fa3"
+    },
+    {
+      "projectId": "chisquarextask0",
+      "projectNumber": "236908613962",
+      "displayName": "chix",
+      "name": "projects/chisquarextask0",
+      "resources": {
+        "hostingSite": "chisquarextask0"
+      },
+      "state": "ACTIVE",
+      "etag": "1_729ef9ef-434b-407f-9bb4-1929ebbd6d02"
+    }
+  ]
+}

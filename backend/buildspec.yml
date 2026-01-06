@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build --platform linux/amd64 -f backend/Dockerfile -t ai-secretary-backend backend/
+      - docker tag ai-secretary-backend:latest $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/ai-secretary-backend:latest
+  post_build:
+    commands:
+      - echo Pushing to ECR...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/ai-secretary-backend:latest
+      - echo Triggering App Runner deployment...
+      - SERVICE_ARN=$(aws apprunner list-services --query "ServiceSummaryList[?ServiceUrl=='qcuenjh6mj.us-east-1.awsapprunner.com'].ServiceArn" --output text)
+      - aws apprunner start-deployment --service-arn $SERVICE_ARN || echo "App Runner not ready - trigger manually later"

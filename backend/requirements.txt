@@ -1,0 +1,77 @@
+# ====================================
+# Core Backend Framework
+# ====================================
+fastapi>=0.103.0
+uvicorn>=0.27.0
+python-multipart>=0.0.9
+python-dotenv>=1.0.0
+
+# ====================================
+# LangChain Stack (Compatible with langchain-core 1.2+)
+# ====================================
+langchain~=1.2.0
+langchain-core~=1.2.0
+langchain-community~=0.4.0
+langchain-text-splitters~=1.1.0
+langchain-google-genai~=4.1.0
+langchain-pinecone~=0.2.0
+
+# ====================================
+# Vector Database
+# ====================================
+pinecone-client>=3.2.2
+
+# ====================================
+# Google Gemini AI
+# ====================================
+google-generativeai>=0.7.0
+
+# ====================================
+# Google APIs (Calendar, OAuth)
+# ====================================
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+pytz
+
+# ====================================
+# Document Processing & Loaders
+# ====================================
+unstructured>=0.10.0
+pypdf>=4.0.0
+python-docx>=0.8.11
+openpyxl>=3.1.0
+msoffcrypto-tool>=5.0.0
+pandas>=2.0.0
+vobject>=0.9.7
+pillow>=10.0.0
+pymupdf
+docx2txt
+
+# ====================================
+# Database (PostgreSQL/NeonDB)
+# ====================================
+sqlalchemy
+psycopg2-binary
+
+# ====================================
+# Authentication & Security
+# ====================================
+pyjwt
+cryptography
+
+# ====================================
+# Utilities
+# ====================================
+requests>=2.31.0
+numpy<2
+
+# ====================================
+# AI Model Providers
+# ====================================
+langchain-groq~=1.1.0
+langchain-nvidia-ai-endpoints~=1.0.0
+langchain-huggingface~=1.2.0
+sentence-transformers~=2.6.0
+elevenlabs~=2.27.0 

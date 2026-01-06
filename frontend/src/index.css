@@ -1,0 +1,571 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-darkBg text-gray-100 antialiased font-sans overflow-hidden;
+  }
+
+  /* Performance optimizations for smooth rendering - only for animated elements */
+  *[class*="animate"],
+  *[class*="motion"] {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+
+  /* --- Premium Glass System (Soft & Warm) --- */
+  .glass-panel {
+    @apply bg-glass backdrop-blur-xl border-2 border-white/10 shadow-glass rounded-3xl relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.7) 100%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+      0 4px 24px rgba(59, 130, 246, 0.05);
+  }
+
+  .glass-panel::before {
+    content: '';
+    @apply absolute inset-0 rounded-3xl opacity-30 pointer-events-none;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(251, 146, 60, 0.05) 100%);
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border-2 border-white/10 rounded-2xl transition-all duration-300;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .glass-card:hover {
+    @apply bg-white/10 border-white/15 shadow-lg transform -translate-y-1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+      0 0 20px rgba(59, 130, 246, 0.15);
+  }
+
+  /* --- Typography & Text --- */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 font-bold;
+  }
+
+  /* --- Buttons --- */
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-medium py-2 px-4 rounded-xl shadow-lg transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    @apply shadow-glow-primary scale-[1.02];
+  }
+
+  .btn-primary:active {
+    @apply scale-[0.98];
+  }
+
+  /* --- Scrollbar Customization --- */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+
+  /* Custom Scrollbar Utility */
+  .custom-scrollbar {
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+    /* Improve scroll stability and performance */
+    will-change: scroll-position;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Better momentum scrolling */
+    overscroll-behavior: contain;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* --- Premium Chat Components --- */
+
+  /* Enhanced Message Bubbles - Softer, Lower Contrast */
+  .message-bubble-user {
+    @apply bg-gradient-to-br from-blue-600/45 via-blue-700/50 to-indigo-700/45 backdrop-blur-lg border-2 border-blue-500/25 text-gray-100 rounded-3xl rounded-tr-md p-5 shadow-lg relative overflow-hidden;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .message-bubble-user::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-tr from-white/[0.05] to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .message-bubble-user:hover::before {
+    @apply opacity-100;
+  }
+
+  .message-bubble-assistant {
+    @apply bg-gradient-to-br from-slate-800/55 via-slate-800/60 to-slate-900/55 backdrop-blur-lg border-2 border-slate-700/30 text-gray-200 rounded-3xl rounded-tl-md p-5 shadow-lg relative overflow-hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(148, 163, 184, 0.1) inset,
+      0 2px 8px rgba(59, 130, 246, 0.05);
+  }
+
+  .message-bubble-assistant::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-tr from-blue-500/[0.03] to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .message-bubble-assistant:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Avatar Glow Effects - Professional */
+  .avatar-user {
+    @apply w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-br from-blue-600 to-indigo-700 shadow-lg relative;
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .avatar-assistant {
+    @apply w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-br from-orange-500 to-amber-600 shadow-lg relative;
+    box-shadow: 0 0 16px rgba(251, 146, 60, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Premium Typing Indicator */
+  .typing-indicator {
+    @apply bg-gradient-to-br from-slate-800/90 via-slate-900/90 to-gray-900/80 backdrop-blur-md border border-white/10 rounded-2xl rounded-tl-sm p-5 flex items-center gap-2.5 shadow-lg relative overflow-hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .typing-dot {
+    @apply w-2.5 h-2.5 rounded-full bg-gradient-to-br from-primary to-accent shadow-glow-primary;
+    animation: typingBounce 1.4s ease-in-out infinite;
+  }
+
+  .typing-dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  /* Enhanced Chat Input */
+  .chat-input-container {
+    @apply glass-panel p-3 flex items-end gap-3 shadow-2xl bg-black/40 border-2 border-white/10 transition-all duration-300 relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+      0 -4px 24px rgba(59, 130, 246, 0.08);
+  }
+
+  .chat-input-container:focus-within {
+    @apply border-primary/60 shadow-glow-primary;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.7) 100%);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+      0 -4px 24px rgba(59, 130, 246, 0.15);
+  }
+
+  .chat-input-container::after {
+    content: '';
+    @apply absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 pointer-events-none;
+    background: radial-gradient(circle at center, rgba(251, 146, 60, 0.1) 0%, transparent 70%);
+  }
+
+  .chat-input-container:focus-within::after {
+    @apply opacity-100;
+  }
+
+  /* Send Button Enhanced */
+  .send-button {
+    @apply p-3 rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-lg transition-all duration-300;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .send-button:hover {
+    @apply shadow-glow-primary scale-105;
+  }
+
+  .send-button:active {
+    @apply scale-95;
+  }
+
+  .send-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .send-button:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Suggested Prompt Cards */
+  .suggested-prompt {
+    @apply glass-card p-4 cursor-pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .suggested-prompt:hover {
+    @apply bg-white/15 border-primary/30 shadow-glow-primary transform -translate-y-1 scale-[1.02];
+  }
+
+  .suggested-prompt::after {
+    content: '';
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none;
+    background: radial-gradient(circle at center, rgba(251, 146, 60, 0.15) 0%, transparent 70%);
+  }
+
+  .suggested-prompt:hover::after {
+    @apply opacity-100;
+  }
+}
+
+/* --- Utilities & Animations --- */
+
+/* Slide Animations */
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade & Scale Animations */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Shimmer Effect */
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Pulse Glow */
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(251, 146, 60, 0.7);
+  }
+}
+
+/* Shake Animation for errors */
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes shake {
+
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+
+  20%,
+  80% {
+    transform: translateX(4px);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translateX(-6px);
+  }
+
+  40%,
+  60% {
+    transform: translateX(6px);
+  }
+}
+
+/* Stagger utilities for list items */
+.stagger-item {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.stagger-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.stagger-item:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.stagger-item:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+.stagger-item:nth-child(7) {
+  animation-delay: 0.35s;
+}
+
+.stagger-item:nth-child(8) {
+  animation-delay: 0.4s;
+}
+
+.stagger-item:nth-child(9) {
+  animation-delay: 0.45s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Typing Bounce Animation */
+@keyframes typingBounce {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+
+  30% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Message Slide In Animation */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Glow Pulse Animation */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 35px rgba(251, 146, 60, 0.6), 0 0 50px rgba(251, 146, 60, 0.3);
+  }
+}
+
+/* Subtle Pulse Animation for Ambient Elements */
+.animate-pulse-subtle {
+  animation: pulseSubtle 4s ease-in-out infinite;
+}
+
+@keyframes pulseSubtle {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
