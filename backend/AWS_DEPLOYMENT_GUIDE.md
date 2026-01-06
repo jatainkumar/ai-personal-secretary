@@ -210,16 +210,7 @@ Save as `JWT_SECRET_KEY` and `CREDENTIAL_ENCRYPTION_KEY`
 2. **Update Frontend Environment Variables**
    
    Edit `frontend/.env.production`:
-   ```env
-   VITE_API_BASE=https://YOUR-APP-RUNNER-URL.awsapprunner.com
-   VITE_FIREBASE_API_KEY=AIzaSyBiK7nXwIbne8pcudAm8k342AZHVtUt_Y0
-   VITE_FIREBASE_AUTH_DOMAIN=ai-personal-secretary-jatain.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=ai-personal-secretary-jatain
-   VITE_FIREBASE_STORAGE_BUCKET=ai-personal-secretary-jatain.firebasestorage.app
-   VITE_FIREBASE_MESSAGING_SENDER_ID=346573152944
-   VITE_FIREBASE_APP_ID=1:346573152944:web:cec68e5f4a47ef99ff5175
-   VITE_FIREBASE_MEASUREMENT_ID=G-JVGF5X1T4L
-   ```
+
 
 3. **Rebuild and Redeploy Frontend**
    ```bash
